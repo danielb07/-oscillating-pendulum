@@ -16,14 +16,12 @@ function setup() {
     isStatic:true
   }
 
-  rigid_support = Bodies.rectangle(200,10,100,20,support_option)
-    World.add(world,rigid_support)
+  rigid_support.body = Bodies.rectangle(200,10,100,20,support_option)
+    World.add(world,rigid_support.body)
 
   ground = Bodies.rectangle(200,390,800,10,support_option);
-    World.add(world,ground);
+    World.add(world,ground.body);
 
-  bob = Bodies.circle(200,200,50,50);
-    World.add(world, bob);
     
   var constraint_option = {
     bodyA:bob.body,
