@@ -12,20 +12,14 @@ function setup() {
   engine = Engine.create();
   world = engine.world;
 
-  var support_option = {
-    isStatic:true
-  }
+  rigid_support = new Support(200,10,100,20)
+  ground = new Support(200,390,800,10)
 
-  rigid_support.body = Bodies.rectangle(200,10,100,20,support_option)
-    World.add(world,rigid_support.body)
+  bob = new Bob(200,200,10)
 
-  ground = Bodies.rectangle(200,390,800,10,support_option);
-    World.add(world,ground.body);
-
-    
   var constraint_option = {
-    bodyA:bob.body,
-    bodyB:rigid_support.body,
+    bodyB:bob.body,
+    bodyA:rigid_support.body,
     stiffness:0.04,
     length: 10
   }
@@ -38,23 +32,18 @@ function draw() {
   background(200);  
   Engine.update(engine)
 
-  rectMode(CENTER)
-  var p_pos = rigid_support.position
-  rect(p_pos.x,p_pos.y,200,20);
 
-  rectMode(CENTER);
-  var g_pos = ground.position
-  rect(g_pos.x,g_pos.y,800,20);  
 
-  ellirigid_supporteMode(CENTER)
-  var b_pos = bob.position
-  ellirigid_supporte(b_pos.x,b_pos.y,50,50)
-
-  
   var bob_pos = bob.body.position;
-  var sup_pos = rigid_support.body.position;
+  var rigid_pos = rigid_support.body.position;
+
   strokeWeight(3);
-  line(bob_pos.x,bob_pos.y,sup_pos.x,sup_pos.y);
+  line(bob_pos.x,bob_pos.y,rigid_pos.x,rigid_pos.y);
+
+  bob.display();
+
+  ground.display();
+  rigid_support.display();
 
   drawSprites();
 }
