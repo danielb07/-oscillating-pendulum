@@ -10,8 +10,9 @@ class Bob {
         World.add(world,this.body)
     }
     display(){
+        fill("#C2C1BD")
         var pos = this.body.position;
-        ellipseMode(CENTER);
+        ellipseMode(RADIUS);
         ellipse(pos.x,pos.y,this.radius,this.radius);
     }
 }
